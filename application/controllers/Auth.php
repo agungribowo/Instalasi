@@ -33,7 +33,7 @@ class Auth extends CI_Controller {
         $password = md5($this->input->post('password'));
 
         $data_cs_store = $this->db->get_where('tbl_cs_store', ['username' => $username, 'password' => $password])->row_array();
-        $data_customer = $this->db->get_where('tbl_customer', ['username' => $username, 'password' => $password])->row_array();
+        $data_installer = $this->db->get_where('tbl_installer', ['username' => $username, 'password' => $password])->row_array();
         
         if ($data_cs_store) {
             if ($data_cs_store['password'] == $password) {
@@ -42,15 +42,11 @@ class Auth extends CI_Controller {
                 $this->session->set_flashdata('gagal', 'Kamu Gagal Login');
                 redirect('auth');
             }
-        } else if($data_customer) {
-            if ($data_customer['active'] == 1) {
-                if ($data_customer['password'] == $password) {
-                    redirect('customer');
-                } else {
-                    $this->session->set_flashdata('gagal', 'Kamu Gagal Login');
-                }
+        } else if($data_installer) {
+            if ($data_installer['password'] == $password) {
+                redirect('installer');
             } else {
-                $this->session->set_flashdata('gagal', 'Akun Kamu Belum Aktif');
+                $this->session->set_flashdata('gagal', 'Kamu Gagal Login');
             }
         } else {
             $this->session->set_flashdata('gagal', 'Kamu Gagal Login');
@@ -67,7 +63,6 @@ class Auth extends CI_Controller {
         $this->form_validation->set_rules('jenis_produk', 'Jenis Produk', 'trim|required');
         
         if ($this->form_validation->run() == FALSE) {
-            echo validation_errors();
             return view('permintaan');
         } else {
             $data_customer = [

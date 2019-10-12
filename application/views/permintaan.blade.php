@@ -77,66 +77,6 @@
             </div>
         </section>
     </div>
-    <!-- <div class="login-box">
-        <div class="row">
-            <div class="col-sm-3">
-                <img src="<?=base_url()?>_assets/img/logo_ace.png" alt="logo_ace" class="img-responsive center">
-            </div>
-        </div>
-        <div class="card">
-            <div class="body">
-                <?= form_open('auth/register'); ?>
-                    <div class="msg">Permintaan Instalasi</div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="text" class="form-control" name="nama" placeholder="Nama" required autofocus>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="number" class="form-control" name="no_hp" placeholder="No Hp" required autofocus>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            <textarea name="alamat" id="alamat" class="form-control no-resize" cols="32" rows="2"></textarea>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="text" class="form-control" name="username" placeholder="Username" required autofocus>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="password" class="form-control" name="password" placeholder="Password" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN UP</button>
-                        </div>
-                    </div>
-                <?=form_close()?>
-            </div>
-        </div>
-    </div> -->
-
     <script src="<?=base_url()?>_assets/plugins/jquery/jquery.min.js"></script>
     <script src="<?=base_url()?>_assets/plugins/bootstrap/js/bootstrap.js"></script>
     <script src="<?=base_url()?>_assets/plugins/node-waves/waves.js"></script>

@@ -7,7 +7,7 @@ class Page extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-        $this->load->model(['m_cs_store', 'm_installer']);
+        $this->load->model(['m_cs_store', 'm_installer', 'm_jadwal']);
     }
 
     public function index()
@@ -166,7 +166,9 @@ class Page extends CI_Controller {
                     } else {
                         $this->session->set_flashdata('gagal', 'Gagal Edit Installer');
                     }
-                } echo "gagal";
+                } else {
+                    $this->session->set_flashdata('gagal', 'Gagal Edit Installer');
+                };
             }
 
             redirect('page/installer');
@@ -189,14 +191,68 @@ class Page extends CI_Controller {
     public function permintaan()
     {
         $active = "permintaan";
-        $data   = $this->db->select('*')->from('tbl_permintaan')->join('tbl_customer', 'tbl_permintaan.kode_customer = tbl_customer.kode_customer', 'left')->join('tbl_produk', 'tbl_permintaan.kode_produk = tbl_produk.kode_produk', 'left')->get()->result_array();
+        $data_permintaan  = $this->db->select('*')->from('tbl_permintaan')->join('tbl_customer', 'tbl_permintaan.kode_customer = tbl_customer.kode_customer', 'left')->join('tbl_produk', 'tbl_permintaan.kode_produk = tbl_produk.kode_produk', 'left')->get()->result_array();
+        $installer = $this->db->get('tbl_installer')->result_array();
+
+        $data = [];
+        $no = 0;
+        foreach($data_permintaan as $permintaan) {
+            $jadwal = "";
+            $disabled = "";
+            if ($this->db->get_where('tbl_jadwal_instalasi', ['kode_permintaan' => $permintaan['kode_permintaan']])->row_array() == NULL) {
+                $jadwal = "Belum Terjadwal";
+                $disabled = "";
+            } else {
+                $jadwal = "Sudah Terjadwal";
+                $disabled = "disabled";
+            }
+
+            $data[$no]['kode_permintaan']   = $permintaan['kode_permintaan'];
+            $data[$no]['nama_customer']     = $permintaan['nama_customer'];
+            $data[$no]['no_hp']             = $permintaan['no_hp'];
+            $data[$no]['alamat']            = $permintaan['alamat'];
+            $data[$no]['nama_produk']       = $permintaan['nama_produk'];
+            $data[$no]['nama_produk']       = $permintaan['nama_produk'];
+            $data[$no]['jenis_produk']      = $permintaan['jenis_produk'];
+            $data[$no]['tanggal_permintaan']= $permintaan['tanggal_permintaan'];
+            $data[$no]['jadwal']            = $jadwal;
+            $data[$no]['disabled']          = $disabled;
+            $no++;
+        }
 
         $data_parse = [
             'active'            => $active,
             'data_permintaan'   => $data,
+            'data_installer'    => $installer,
+            'kode_instalasi'    => kode_instalasi()
         ];
 
         return view('permintaan.list', $data_parse);
+    }
+
+    public function jadwal_instalasi()
+    {
+        $this->form_validation->set_rules('kode_instalasi', 'Kode Instalasi', 'trim|required');
+        $this->form_validation->set_rules('kode_permintaan', 'Kode Permintaan', 'trim|required');
+        $this->form_validation->set_rules('nama_customer', 'Nama Customer', 'trim|required');
+        $this->form_validation->set_rules('nama_produk', 'Nama Produk', 'trim|required');
+        $this->form_validation->set_rules('jenis_produk', 'Jenis Produk', 'trim|required');
+        $this->form_validation->set_rules('installer', 'Installer', 'trim|required');
+        $this->form_validation->set_rules('tanggal_instalasi', 'Tanggal Instalasi', 'trim|required');
+
+        if ($this->form_validation->run() == FALSE) {
+            echo validation_errors();
+            die();
+            redirect('page/permintaan');
+        } else {
+            $result = $this->m_jadwal->insert_jadwal_instalasi();
+            if ($result > 0) {
+                $this->session->set_flashdata('simpan', 'Berhasil Jadwalkan Instalasi');
+            } else {
+                $this->session->set_flashdata('gagal', 'Gagal Jadwalkan Instalasi');
+            }
+        }
+        redirect('page/permintaan');
     }
 
     public function customer()

@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
     <link href="<?=base_url()?>_assets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="<?=base_url()?>_assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+    <!-- <link href="<?=base_url()?>_assets/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" /> -->
     <link href="<?=base_url()?>_assets/plugins/node-waves/waves.css" rel="stylesheet" />
     <link href="<?=base_url()?>_assets/plugins/animate-css/animate.css" rel="stylesheet" />
     <link href="<?=base_url()?>_assets/plugins/morrisjs/morris.css" rel="stylesheet" />
@@ -42,13 +44,15 @@
 
     <script src="<?=base_url()?>_assets/plugins/jquery/jquery.min.js"></script>
     <script src="<?=base_url()?>_assets/plugins/bootstrap/js/bootstrap.js"></script>
-    <script src="<?=base_url()?>_assets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <!-- <script src="<?=base_url()?>_assets/plugins/bootstrap-select/js/bootstrap-select.js"></script> -->
     <script src="<?=base_url()?>_assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
     <script src="<?=base_url()?>_assets/plugins/node-waves/waves.js"></script>
     <script src="<?=base_url()?>_assets/plugins/jquery-countto/jquery.countTo.js"></script>
     <script src="<?=base_url()?>_assets/plugins/morrisjs/morris.js"></script>
     <script src="<?=base_url()?>_assets/plugins/jquery-sparkline/jquery.sparkline.js"></script>
     <script src="<?=base_url()?>_assets/js/admin.js"></script>
+    <script src="<?=base_url()?>_assets/plugins/momentjs/moment.js"></script>
+    <script src="<?=base_url()?>_assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
     <!-- <script src="<?=base_url()?>_assets/js/pages/index.js"></script> -->
     <script src="<?=base_url()?>_assets/js/demo.js"></script>
     <script src="<?=base_url()?>_assets/js/pages/ui/modals.js"></script>
@@ -68,7 +72,7 @@
             $('#edit_username').val(username);
 
             $('#modal_edit').modal('show');
-        })
+        });
 
         $('.edit_installer').on('click', function() {
             var $this = $(this); 
@@ -85,7 +89,25 @@
             $('#edit_username').val(username);
 
             $('#modal_edit').modal('show');
-        })
+        });
+
+        $('.jadwalkan').on('click', function() {
+            $('#modal_jadwal') .modal('show');
+
+            var $this = $(this);
+            kode_permintaan      = $this.data('kode_permintaan');
+            console.log(kode_permintaan)
+            nama_customer        = $this.data('nama_customer');
+            nama_produk          = $this.data('nama_produk');
+            jenis_produk         = $this.data('jenis_produk');
+
+            $('#kode_permintaan').val(kode_permintaan);
+            $('#nama_customer').val(nama_customer);
+            $('#nama_produk').val(nama_produk);
+            $('#jenis_produk').val(jenis_produk);
+        });
+
+        $('#tanggal_instalasi').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', minDate : new Date() });
     </script>
 </body>
 </html><?php /**PATH /var/www/html/Instalasi/application/views/layouts/master.blade.php ENDPATH**/ ?>
