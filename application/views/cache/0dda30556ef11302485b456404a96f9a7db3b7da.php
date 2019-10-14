@@ -55,8 +55,8 @@
                         <span>CS Store</span>
                     </a>
                 </li>
-                <li>
-                    <a href="pages/helper-classes.html">
+                <li <?php echo $_active = ($active == "laporan") ? 'class="active"' : '' ;?>>
+                    <a href="<?=base_url()?>page/laporan">
                         <i class="material-icons">layers</i>
                         <span>Laporan</span>
                     </a>

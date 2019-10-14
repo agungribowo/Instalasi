@@ -255,6 +255,27 @@ class Page extends CI_Controller {
         redirect('page/permintaan');
     }
 
+    public function laporan()
+    {
+        $data_parse = [
+            'active'  => "laporan",
+            'data_laporan' => $this->db->select('*')->from('tbl_jadwal_instalasi')->join('tbl_permintaan', 'tbl_jadwal_instalasi.kode_permintaan = tbl_permintaan.kode_permintaan', 'left')->join('tbl_customer', 'tbl_jadwal_instalasi.kode_customer = tbl_customer.kode_customer', 'left')->join('tbl_produk', 'tbl_jadwal_instalasi.kode_produk = tbl_produk.kode_produk', 'left')->join('tbl_installer', 'tbl_jadwal_instalasi.kode_installer = tbl_installer.kode_installer', 'left')->get()->result_array(),
+        ];
+
+        return view('laporan.list', $data_parse);
+    }
+
+    public function laporan_cetak()
+    {
+        $id_jadwal_instalasi = $this->uri->segment(3);
+        
+        $data_parse = [
+            'active'        => "laporan",
+            'data_laporan'  => $this->db->select('*')->from('tbl_jadwal_instalasi')->join('tbl_permintaan', 'tbl_jadwal_instalasi.kode_permintaan = tbl_permintaan.kode_permintaan', 'left')->join('tbl_customer', 'tbl_jadwal_instalasi.kode_customer = tbl_customer.kode_customer', 'left')->join('tbl_produk', 'tbl_jadwal_instalasi.kode_produk = tbl_produk.kode_produk', 'left')->join('tbl_installer', 'tbl_jadwal_instalasi.kode_installer = tbl_installer.kode_installer', 'left')->where('tbl_jadwal_instalasi.id_jadwal_instalasi', $id_jadwal_instalasi)->get()->row_array()
+        ];
+        return view('laporan.cetak', $data_parse);
+    }
+
     public function customer()
     {
         $data_parse = [
