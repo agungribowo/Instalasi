@@ -42,8 +42,8 @@
                         <span>Customer</span>
                     </a>
                 </li>
-                <li>
-                    <a href="pages/helper-classes.html">
+                <li <?php if ($active == "jadwal") { echo 'class="active"'; }?>>
+                    <a href="<?=base_url()?>page/jadwal">
                         <i class="material-icons">layers</i>
                         <span>Jadwal</span>
                     </a>

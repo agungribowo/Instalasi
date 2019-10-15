@@ -44,16 +44,19 @@
 
     <script src="<?=base_url()?>_assets/plugins/jquery/jquery.min.js"></script>
     <script src="<?=base_url()?>_assets/plugins/bootstrap/js/bootstrap.js"></script>
-    <!-- <script src="<?=base_url()?>_assets/plugins/bootstrap-select/js/bootstrap-select.js"></script> -->
+    <script src="<?=base_url()?>_assets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
     <script src="<?=base_url()?>_assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
     <script src="<?=base_url()?>_assets/plugins/node-waves/waves.js"></script>
     <script src="<?=base_url()?>_assets/plugins/jquery-countto/jquery.countTo.js"></script>
+    <script src="<?=base_url()?>_assets/plugins/raphael/raphael.min.js"></script>
     <script src="<?=base_url()?>_assets/plugins/morrisjs/morris.js"></script>
     <script src="<?=base_url()?>_assets/plugins/jquery-sparkline/jquery.sparkline.js"></script>
     <script src="<?=base_url()?>_assets/js/admin.js"></script>
     <script src="<?=base_url()?>_assets/plugins/momentjs/moment.js"></script>
     <script src="<?=base_url()?>_assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
-    <!-- <script src="<?=base_url()?>_assets/js/pages/index.js"></script> -->
+    <script src="<?=base_url()?>_assets/plugins/chartjs/Chart.bundle.js"></script>
+    <script src="<?=base_url()?>_assets/plugins/flot-charts/jquery.flot.js"></script>
+    <script src="<?=base_url()?>_assets/js/pages/index.js"></script>
     <script src="<?=base_url()?>_assets/js/demo.js"></script>
     <script src="<?=base_url()?>_assets/js/pages/ui/modals.js"></script>
     <script>

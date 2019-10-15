@@ -285,6 +285,26 @@ class Page extends CI_Controller {
         return view('customer.list', $data_parse);
     }
 
+    public function jadwal()
+    {
+        if (isset($_POST['submit'])) {
+			$dari = $this->input->post('dari_tanggal');
+			$sampai = $this->input->post("sampai_tanggal");
+		} else {
+			$dari = date("Y-m-d");
+            $sampai = date("Y-m-d");
+		}
+
+        $data_parse = [
+            'active'        => 'jadwal',
+            'data_jadwal'   => $this->m_jadwal->data_jadwal($dari, $sampai)->result_array(),
+            'dari'          => $dari,
+			'sampai'        => $sampai
+        ];
+
+        return view('jadwal.list', $data_parse);
+    }
+
     public function upload_foto($path)
     {
 		$config['upload_path'] 		= $path;
