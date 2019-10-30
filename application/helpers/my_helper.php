@@ -1,5 +1,21 @@
 <?php 
 
+    function session_cs_store() {
+        if(isset($_SESSION['cs_store'])) {
+            return TRUE;
+        } else {
+        redirect(base_url('auth'), 'refresh');
+        }
+    }
+
+    function session_installer() {
+        if(isset($_SESSION['installer'])) {
+            return TRUE;
+        } else {
+        redirect(base_url('installer'), 'refresh');
+        }
+    }
+
     function kode_cs_store()
     {
         $CI =& get_instance();

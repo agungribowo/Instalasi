@@ -8,12 +8,18 @@ class Page extends CI_Controller {
     {
         parent::__construct();
         $this->load->model(['m_cs_store', 'm_installer', 'm_jadwal']);
+        session_cs_store();
     }
 
     public function index()
     {
         $active = 'dashboard';
-        return view('dashboard', ['active' => $active]);
+        $data['permintaan']   = $this->db->get('tbl_permintaan')->num_rows();
+        $data['customer']     = $this->db->get('tbl_customer')->num_rows();
+        $data['cs_store']     = $this->db->get('tbl_cs_store')->num_rows();
+        $data['cs_store']     = $this->db->get('tbl_cs_store')->num_rows();
+        $data['laporan']      = $this->db->select('*')->from('tbl_jadwal_instalasi')->join('tbl_permintaan', 'tbl_jadwal_instalasi.kode_permintaan = tbl_permintaan.kode_permintaan', 'left')->join('tbl_customer', 'tbl_jadwal_instalasi.kode_customer = tbl_customer.kode_customer', 'left')->join('tbl_produk', 'tbl_jadwal_instalasi.kode_produk = tbl_produk.kode_produk', 'left')->join('tbl_installer', 'tbl_jadwal_instalasi.kode_installer = tbl_installer.kode_installer', 'left')->get()->num_rows();
+        return view('dashboard', ['active' => $active, 'data' => $data]);
     }
     
     public function cs_store()
@@ -318,6 +324,12 @@ class Page extends CI_Controller {
 		
         $upload = $this->upload->data();
 		return $upload['file_name'];
-	}
+    }
+    
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect('auth');
+    }
 }        
                             

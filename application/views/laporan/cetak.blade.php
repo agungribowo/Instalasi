@@ -75,15 +75,15 @@
                                 </tr>
                                 <tr>
                                     <th class="text-center">Komentar : </th>
-                                    <td class="text-center"></td>
+                                    <td class="text-center">{{ $data_laporan['komentar'] }}</td>
                                 </tr>
                                 <tr>
                                     <th class="text-center">Biaya Service : </th>
-                                    <td class="text-center"></td>
+                                    <td class="text-center">{{ $data_laporan['biaya_service'] }}</td>
                                 </tr>
                                 <tr>
                                     <th class="text-center">Biaya Transport : </th>
-                                    <td class="text-center"></td>
+                                    <td class="text-center">{{ $data_laporan['biaya_transport'] }}</td>
                                 </tr>
                             </table>
                             <div class="row">

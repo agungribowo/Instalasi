@@ -54,9 +54,9 @@
                             <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
                         </div>
 
-                        <div class="col-xs-12 text-center">
+                        <!-- <div class="col-xs-12 text-center">
                             <a href="<?=base_url()?>auth/register">Register Now!</a>
-                        </div>
+                        </div> -->
 
                     </div>
                 <?=form_close()?>

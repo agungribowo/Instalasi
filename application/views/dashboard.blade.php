@@ -11,47 +11,50 @@
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box bg-pink hover-expand-effect">
                         <div class="icon">
-                            <i class="material-icons">playlist_add_check</i>
+                            <i class="material-icons">description</i>
                         </div>
                         <div class="content">
                             <div class="text">PERMINTAAN</div>
+                            <div class="number"><?=$data['permintaan']?></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box bg-cyan hover-expand-effect">
                         <div class="icon">
-                            <i class="material-icons">help</i>
+                            <i class="material-icons">person</i>
                         </div>
                         <div class="content">
                             <div class="text">CUSTOMER</div>
+                            <div class="number"><?=$data['customer']?></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box bg-light-green hover-expand-effect">
                         <div class="icon">
-                            <i class="material-icons">forum</i>
+                            <i class="material-icons">perm_contact_calendar</i>
                         </div>
                         <div class="content">
                             <div class="text">CS STORE</div>
+                            <div class="number"><?=$data['cs_store']?></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box bg-orange hover-expand-effect">
                         <div class="icon">
-                            <i class="material-icons">person_add</i>
+                            <i class="material-icons">book</i>
                         </div>
                         <div class="content">
                             <div class="text">LAPORAN</div>
+                            <div class="number"><?=$data['laporan']?></div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="row clearfix">
-                <!-- Task Info -->
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                     <div class="card">
                         <div class="header">
@@ -145,8 +148,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- #END# Task Info -->
-                <!-- Browser Usage -->
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                     <div class="card">
                         <div class="header">
@@ -169,7 +170,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- #END# Browser Usage -->
             </div>
         </div>
     </section>

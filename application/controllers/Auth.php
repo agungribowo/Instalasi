@@ -34,9 +34,13 @@ class Auth extends CI_Controller {
 
         $data_cs_store = $this->db->get_where('tbl_cs_store', ['username' => $username, 'password' => $password])->row_array();
         $data_installer = $this->db->get_where('tbl_installer', ['username' => $username, 'password' => $password])->row_array();
+        // echo json_encode($data_installer);
+        // die();
         
         if ($data_cs_store) {
             if ($data_cs_store['password'] == $password) {
+                $data_cs_store['cs_store'] = 'cs_store';
+                $this->session->set_userdata($data_cs_store);
                 redirect('page');
             } else {
                 $this->session->set_flashdata('gagal', 'Kamu Gagal Login');
@@ -44,6 +48,8 @@ class Auth extends CI_Controller {
             }
         } else if($data_installer) {
             if ($data_installer['password'] == $password) {
+                $data_cs_store['installer'] = 'installer';
+                $this->session->set_userdata($data_installer);
                 redirect('installer');
             } else {
                 $this->session->set_flashdata('gagal', 'Kamu Gagal Login');
