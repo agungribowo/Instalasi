@@ -1,6 +1,4 @@
-@extends('layouts.master')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
@@ -35,23 +33,23 @@
                                     </thead>
                                     <tbody>
                                         <?php $no = 1; ?>
-                                        @foreach($data_permintaan as $permintaan)
+                                        <?php $__currentLoopData = $data_permintaan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $permintaan): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
-                                                <td class="text-center">{{ $no }} .</td>
-                                                <td class="text-center">{{ $permintaan['kode_permintaan'] }}</td>
-                                                <td class="text-center">{{ $permintaan['nama_customer'] }}</td>
-                                                <td class="text-center">{{ $permintaan['no_hp'] }}</td>
-                                                <td class="text-center">{{ $permintaan['alamat'] }}</td>
-                                                <td class="text-center">{{ $permintaan['nama_produk'] }}</td>
-                                                <td class="text-center">{{ $permintaan['jenis_produk'] }}</td>
-                                                <td class="text-center">{{ $permintaan['tanggal_permintaan'] }}</td>
-                                                <td class="text-center">{{ $permintaan['jadwal'] }}</td>
+                                                <td class="text-center"><?php echo e($no); ?> .</td>
+                                                <td class="text-center"><?php echo e($permintaan['kode_permintaan']); ?></td>
+                                                <td class="text-center"><?php echo e($permintaan['nama_customer']); ?></td>
+                                                <td class="text-center"><?php echo e($permintaan['no_hp']); ?></td>
+                                                <td class="text-center"><?php echo e($permintaan['alamat']); ?></td>
+                                                <td class="text-center"><?php echo e($permintaan['nama_produk']); ?></td>
+                                                <td class="text-center"><?php echo e($permintaan['jenis_produk']); ?></td>
+                                                <td class="text-center"><?php echo e($permintaan['tanggal_permintaan']); ?></td>
+                                                <td class="text-center"><?php echo e($permintaan['jadwal']); ?></td>
                                                 <td class="text-center"> 
-                                                    <button type="button" class="btn btn-info btn-sm waves-effect jadwalkan" data-toggle="modal" data-kode_permintaan="{{ $permintaan['kode_permintaan'] }}" data-nama_customer="{{ $permintaan['nama_customer'] }}" data-nama_produk="{{ $permintaan['nama_produk'] }}" data-jenis_produk="{{ $permintaan['jenis_produk'] }}" {{ $permintaan['disabled'] }}> <i class="material-icons">settings</i><span> Jadwalkan </span></button>
+                                                    <button type="button" class="btn btn-info btn-sm waves-effect jadwalkan" data-toggle="modal" data-kode_permintaan="<?php echo e($permintaan['kode_permintaan']); ?>" data-nama_customer="<?php echo e($permintaan['nama_customer']); ?>" data-nama_produk="<?php echo e($permintaan['nama_produk']); ?>" data-jenis_produk="<?php echo e($permintaan['jenis_produk']); ?>" <?php echo e($permintaan['disabled']); ?>> <i class="material-icons">settings</i><span> Jadwalkan </span></button>
                                                 </td>
                                             </tr>
                                         <?php $no++;?>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -73,7 +71,7 @@
                                 <label> Kode Instalasi </label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="kode_instalasi" id="kode_installasi" value=" {{ $kode_instalasi }}" readonly style="background-color:#0000002e">
+                                        <input type="text" class="form-control" name="kode_instalasi" id="kode_installasi" value=" <?php echo e($kode_instalasi); ?>" readonly style="background-color:#0000002e">
                                     </div>
                                 </div>
                             </div>
@@ -120,9 +118,9 @@
                                     <div class="form-line">
                                         <select name="installer" class="form-control" required>
                                             <option value=""> -- Pilih Installer --</option>
-                                            @foreach($data_installer as $installer)
-                                                <option value="{{ $installer['kode_installer'] }}"> {{ $installer['nama_installer'] }}</option>
-                                            @endforeach
+                                            <?php $__currentLoopData = $data_installer; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $installer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($installer['kode_installer']); ?>"> <?php echo e($installer['nama_installer']); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                     </div>
                                 </div>
@@ -146,4 +144,5 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/instalasi/application/views/permintaan/list.blade.php ENDPATH**/ ?>

@@ -6,4 +6,4 @@
             <a class="navbar-brand" href="index.html">Sistem Permintaan Instalasi</a>
         </div>
     </div>
-</nav><?php /**PATH /var/www/html/Instalasi/application/views/layouts/navbar.blade.php ENDPATH**/ ?>
+</nav><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/instalasi/application/views/layouts/navbar.blade.php ENDPATH**/ ?>

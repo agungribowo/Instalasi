@@ -1,6 +1,4 @@
-@extends('layouts.master')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
@@ -59,19 +57,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @php $no = 1 @endphp
-                                            @foreach($data_jadwal as $jadwal)
+                                            <?php $no = 1 ?>
+                                            <?php $__currentLoopData = $data_jadwal; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $jadwal): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <tr>
-                                                    <td class="text-center">{{ $no }} .</td>
-                                                    <td class="text-center">{{ $jadwal['kode_permintaan'] }}</td>
-                                                    <td class="text-center">{{ $jadwal['nama_customer'] }}</td>
-                                                    <td class="text-center">{{ $jadwal['no_hp'] }}</td>
-                                                    <td class="text-center">{{ $jadwal['alamat'] }}</td>
-                                                    <td class="text-center">{{ $jadwal['nama_installer'] }}</td>
-                                                    <td class="text-center">{{ $jadwal['tanggal_instalasi'] }}</td>
+                                                    <td class="text-center"><?php echo e($no); ?> .</td>
+                                                    <td class="text-center"><?php echo e($jadwal['kode_permintaan']); ?></td>
+                                                    <td class="text-center"><?php echo e($jadwal['nama_customer']); ?></td>
+                                                    <td class="text-center"><?php echo e($jadwal['no_hp']); ?></td>
+                                                    <td class="text-center"><?php echo e($jadwal['alamat']); ?></td>
+                                                    <td class="text-center"><?php echo e($jadwal['nama_installer']); ?></td>
+                                                    <td class="text-center"><?php echo e($jadwal['tanggal_instalasi']); ?></td>
                                                 </tr>
-                                            @php $no++ @endphp
-                                            @endforeach
+                                            <?php $no++ ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             
                                         </tbody>
                                     </table>
@@ -83,4 +81,5 @@
             </div>
         </div>
     </section>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/instalasi/application/views/jadwal/list.blade.php ENDPATH**/ ?>

@@ -27,26 +27,28 @@
                                     <i class="material-icons">account_circle</i>
                                 </a>
                                 <ul class="dropdown-menu pull-right">
-                                    <li><a href="javascript:void(0);" class=" waves-effect waves-block">Username : {{ $CI->session->userdata('username') }}</a></li>
-                                    <li><a href="javascript:void(0);" class=" waves-effect waves-block">Nama : {{ $CI->session->userdata('nama_installer') }}</a></li>
-                                    <li><a href="javascript:void(0);" class=" waves-effect waves-block">No Hp : {{ $CI->session->userdata('no_hp') }}</a></li>
-                                    <li><a href="javascript:void(0);" class=" waves-effect waves-block">Alamat : {{ $CI->session->userdata('alamat') }}</a></li>
+                                    <li><a href="javascript:void(0);" class=" waves-effect waves-block">Username : <?php echo e($CI->session->userdata('username')); ?></a></li>
+                                    <li><a href="javascript:void(0);" class=" waves-effect waves-block">Nama : <?php echo e($CI->session->userdata('nama_installer')); ?></a></li>
+                                    <li><a href="javascript:void(0);" class=" waves-effect waves-block">No Hp : <?php echo e($CI->session->userdata('no_hp')); ?></a></li>
+                                    <li><a href="javascript:void(0);" class=" waves-effect waves-block">Alamat : <?php echo e($CI->session->userdata('alamat')); ?></a></li>
                                     <li><a href="<?=base_url()?>page/logout" class=" waves-effect waves-block">Logout</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
                     <div class="body table-responsive">
-                        @php $CI =& get_instance(); @endphp
-                            @if ($CI->session->flashdata('gagal'))
+                        <?php $CI =& get_instance(); ?>
+                            <?php if($CI->session->flashdata('gagal')): ?>
                                 <div class="alert bg-red" id="alert">
-                                    {{ $CI->session->flashdata('gagal') }}
+                                    <?php echo e($CI->session->flashdata('gagal')); ?>
+
                                 </div>
-                            @elseif($CI->session->flashdata('simpan'))
+                            <?php elseif($CI->session->flashdata('simpan')): ?>
                                 <div class="alert bg-green" id="alert">
-                                    {{ $CI->session->flashdata('simpan') }}
+                                    <?php echo e($CI->session->flashdata('simpan')); ?>
+
                                 </div>
-                            @endif
+                            <?php endif; ?>
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -63,42 +65,47 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @php $no = 1; @endphp
-                                    @if($data['data_laporan'] == NULL) 
+                                <?php $no = 1; ?>
+                                    <?php if($data['data_laporan'] == NULL): ?> 
                                         <tr>
                                             <td colspan="10" class="text-center"> Belum Ada Tugas</td>
                                         </tr>
-                                    @else 
-                                        @foreach($data['data_laporan'] as $laporan)
+                                    <?php else: ?> 
+                                        <?php $__currentLoopData = $data['data_laporan']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $laporan): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
-                                                <td class="text-center">{{ $no }} .</td>
+                                                <td class="text-center"><?php echo e($no); ?> .</td>
                                                 <td class="text-center">Instalasi</td>
-                                                <td class="text-center">{{ $laporan['nama_customer'] }}</td>
-                                                <td class="text-center">{{ $laporan['no_hp'] }}</td>
-                                                <td class="text-center">{{ $laporan['alamat'] }}</td>
-                                                <td class="text-center">{{ $laporan['nama_produk'] }}</td>
+                                                <td class="text-center"><?php echo e($laporan['nama_customer']); ?></td>
+                                                <td class="text-center"><?php echo e($laporan['no_hp']); ?></td>
+                                                <td class="text-center"><?php echo e($laporan['alamat']); ?></td>
+                                                <td class="text-center"><?php echo e($laporan['nama_produk']); ?></td>
                                                 <td class="text-center">
-                                                @if($laporan['hasil_perbaikan'] == NULL || $laporan['hasil_perbaikan'] == '')
-                                                    {{ 'Proses Perbaikan' }}
-                                                @else
-                                                    {{ $laporan['hasil_perbaikan'] }}
-                                                @endif
+                                                <?php if($laporan['hasil_perbaikan'] == NULL || $laporan['hasil_perbaikan'] == ''): ?>
+                                                    <?php echo e('Proses Perbaikan'); ?>
+
+                                                <?php else: ?>
+                                                    <?php echo e($laporan['hasil_perbaikan']); ?>
+
+                                                <?php endif; ?>
                                                 </td>
-                                                <td class="text-center">{{ $laporan['nama_installer'] }}</td>
-                                                <td class="text-center">{{ $laporan['hasil_kerja'] }}
-                                                @if($laporan['hasil_kerja'] == NULL || $laporan['hasil_kerja'] == '')
-                                                    {{ 'Proses Pengerjaan' }}
-                                                @else
-                                                    {{ $laporan['hasil_kerja'] }}
-                                                @endif
+                                                <td class="text-center"><?php echo e($laporan['nama_installer']); ?></td>
+                                                <td class="text-center"><?php echo e($laporan['hasil_kerja']); ?>
+
+                                                <?php if($laporan['hasil_kerja'] == NULL || $laporan['hasil_kerja'] == ''): ?>
+                                                    <?php echo e('Proses Pengerjaan'); ?>
+
+                                                <?php else: ?>
+                                                    <?php echo e($laporan['hasil_kerja']); ?>
+
+                                                <?php endif; ?>
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="javascript:void(0)" type="button" class="btn btn-warning btn-xs waves-effect edit_hasil" data-toggle="modal" data-id="{{ $laporan['id_jadwal_instalasi'] }}"><i class="material-icons">edit</i></a>
+                                                    <a href="javascript:void(0)" type="button" class="btn btn-warning btn-xs waves-effect edit_hasil" data-toggle="modal" data-id="<?php echo e($laporan['id_jadwal_instalasi']); ?>"><i class="material-icons">edit</i></a>
                                                 </td>
                                             </tr>
-                                        @endforeach
-                                    @endif
-                                @php $no++; @endphp
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    <?php endif; ?>
+                                <?php $no++; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -195,4 +202,4 @@
     </script>
 </body>
 
-</html>
+</html><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/instalasi/application/views/installer/view_installer.blade.php ENDPATH**/ ?>

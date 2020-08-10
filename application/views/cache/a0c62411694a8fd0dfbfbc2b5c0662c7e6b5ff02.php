@@ -5,4 +5,4 @@
     <div class="version">
         <b>Version: </b> 1.0.5
     </div>
-</div><?php /**PATH /var/www/html/Instalasi/application/views/layouts/footer.blade.php ENDPATH**/ ?>
+</div><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/instalasi/application/views/layouts/footer.blade.php ENDPATH**/ ?>

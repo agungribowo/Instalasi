@@ -113,4 +113,4 @@
         $('#tanggal_instalasi').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', minDate : new Date() });
     </script>
 </body>
-</html><?php /**PATH /var/www/html/Instalasi/application/views/layouts/master.blade.php ENDPATH**/ ?>
+</html><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/instalasi/application/views/layouts/master.blade.php ENDPATH**/ ?>

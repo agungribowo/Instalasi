@@ -1,10 +1,8 @@
-@extends('layouts.master')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
-                <h2>Permintaan</h2>
+                <h2>Laporan</h2>
             </div>
             <div class="row clearfix">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -12,7 +10,7 @@
                         <div class="header">
                             <div class="row clearfix">
                                 <div class="col-xs-12 col-sm-6">
-                                    <h2>List Permintaan</h2>
+                                    <h2>List Laporan</h2>
                                 </div>
                             </div>
                         </div>
@@ -22,36 +20,53 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">No</th>
-                                            <th class="text-center">Kode Permintaan</th>
+                                            <th class="text-center">Target</th>
                                             <th class="text-center">Nama Customer</th>
                                             <th class="text-center">No Hp</th>
                                             <th class="text-center">Alamat</th>
                                             <th class="text-center">Nama Produk</th>
-                                            <th class="text-center">Jenis Produk</th>
-                                            <th class="text-center">Tanggal Permintaan</th>
-                                            <th class="text-center">Jadwal</th>
+                                            <th class="text-center">Hasil Perbaikan</th>
+                                            <th class="text-center">Installer</th>
+                                            <th class="text-center">Hasil Kerja</th>
                                             <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $no = 1; ?>
-                                        @foreach($data_permintaan as $permintaan)
+                                        <?php $__currentLoopData = $data_laporan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $laporan): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
-                                                <td class="text-center">{{ $no }} .</td>
-                                                <td class="text-center">{{ $permintaan['kode_permintaan'] }}</td>
-                                                <td class="text-center">{{ $permintaan['nama_customer'] }}</td>
-                                                <td class="text-center">{{ $permintaan['no_hp'] }}</td>
-                                                <td class="text-center">{{ $permintaan['alamat'] }}</td>
-                                                <td class="text-center">{{ $permintaan['nama_produk'] }}</td>
-                                                <td class="text-center">{{ $permintaan['jenis_produk'] }}</td>
-                                                <td class="text-center">{{ $permintaan['tanggal_permintaan'] }}</td>
-                                                <td class="text-center">{{ $permintaan['jadwal'] }}</td>
-                                                <td class="text-center"> 
-                                                    <button type="button" class="btn btn-info btn-sm waves-effect jadwalkan" data-toggle="modal" data-kode_permintaan="{{ $permintaan['kode_permintaan'] }}" data-nama_customer="{{ $permintaan['nama_customer'] }}" data-nama_produk="{{ $permintaan['nama_produk'] }}" data-jenis_produk="{{ $permintaan['jenis_produk'] }}" {{ $permintaan['disabled'] }}> <i class="material-icons">settings</i><span> Jadwalkan </span></button>
+                                                <td class="text-center"><?php echo e($no); ?> .</td>
+                                                <td class="text-center">Instalasi</td>
+                                                <td class="text-center"><?php echo e($laporan['nama_customer']); ?></td>
+                                                <td class="text-center"><?php echo e($laporan['no_hp']); ?></td>
+                                                <td class="text-center"><?php echo e($laporan['alamat']); ?></td>
+                                                <td class="text-center"><?php echo e($laporan['nama_produk']); ?></td>
+                                                <td class="text-center">
+                                                <?php if($laporan['hasil_perbaikan'] == NULL || $laporan['hasil_perbaikan'] == ''): ?>
+                                                    <?php echo e('Proses Perbaikan'); ?>
+
+                                                <?php else: ?>
+                                                    <?php echo e($laporan['hasil_perbaikan']); ?>
+
+                                                <?php endif; ?>
+                                                </td>
+                                                <td class="text-center"><?php echo e($laporan['nama_installer']); ?></td>
+                                                <td class="text-center"><?php echo e($laporan['hasil_kerja']); ?>
+
+                                                <?php if($laporan['hasil_kerja'] == NULL || $laporan['hasil_kerja'] == ''): ?>
+                                                    <?php echo e('Proses Pengerjaan'); ?>
+
+                                                <?php else: ?>
+                                                    <?php echo e($laporan['hasil_kerja']); ?>
+
+                                                <?php endif; ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="<?=base_url()?>page/laporan_cetak/<?php echo e($laporan['id_jadwal_instalasi']); ?>" type="button" class="btn btn-info btn-xs waves-effect" target="_blank"><i class="material-icons">print</i></a>
                                                 </td>
                                             </tr>
                                         <?php $no++;?>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -60,7 +75,7 @@
             </div>
         </div>
     </section>
-    <div class="modal fade" id="modal_jadwal" tabindex="-1" role="dialog">
+    <!-- <div class="modal fade" id="modal_jadwal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-md" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -73,7 +88,7 @@
                                 <label> Kode Instalasi </label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" name="kode_instalasi" id="kode_installasi" value=" {{ $kode_instalasi }}" readonly style="background-color:#0000002e">
+                                        <input type="text" class="form-control" name="kode_instalasi" id="kode_installasi" value=" <?php echo e($kode_instalasi); ?>" readonly style="background-color:#0000002e">
                                     </div>
                                 </div>
                             </div>
@@ -120,9 +135,9 @@
                                     <div class="form-line">
                                         <select name="installer" class="form-control" required>
                                             <option value=""> -- Pilih Installer --</option>
-                                            @foreach($data_installer as $installer)
-                                                <option value="{{ $installer['kode_installer'] }}"> {{ $installer['nama_installer'] }}</option>
-                                            @endforeach
+                                            <?php $__currentLoopData = $data_installer; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $installer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($installer['kode_installer']); ?>"> <?php echo e($installer['nama_installer']); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                     </div>
                                 </div>
@@ -145,5 +160,6 @@
                 <?= form_close(); ?>
             </div>
         </div>
-    </div>
-@endsection
+    </div> -->
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/instalasi/application/views/laporan/list.blade.php ENDPATH**/ ?>

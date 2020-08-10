@@ -67,4 +67,4 @@
         </div>
         <?php echo $__env->make('layouts.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </aside>
-</section><?php /**PATH /var/www/html/Instalasi/application/views/layouts/sidebar.blade.php ENDPATH**/ ?>
+</section><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/instalasi/application/views/layouts/sidebar.blade.php ENDPATH**/ ?>
